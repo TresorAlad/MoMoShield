@@ -35,7 +35,7 @@ Ce dépôt illustre ce qu’un **ingénieur data** peut livrer sur un sujet **fr
 
 **Pistes pour un entretien ou une vitrine :**
 
-- Schéma d’architecture : [`docs/architecture-momoshield.svg`](docs/architecture-momoshield.svg)
+- Schéma d’architecture : [`docs/architecture-momoshield.jpg`](docs/architecture-momoshield.jpg)
 - Fiche projet courte : [`docs/portfolio-fiche.md`](docs/portfolio-fiche.md)
 - Article / narration (optionnel) : [`docs/linkedin-article.md`](docs/linkedin-article.md)
 
@@ -53,9 +53,9 @@ Ce dépôt illustre ce qu’un **ingénieur data** peut livrer sur un sujet **fr
 
 ## Architecture
 
-Schéma portfolio (SVG) :
+Schéma d’architecture (temps réel · batch · consommation) :
 
-![Schéma d’architecture MoMoShield](docs/architecture-momoshield.svg)
+![Schéma d’architecture MoMoShield](docs/architecture-momoshield.jpg)
 
 Vue détaillée (Mermaid, rendu GitHub) :
 
