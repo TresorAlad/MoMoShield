@@ -18,6 +18,7 @@ dbt/dbt_packages/
 archive.zip
 
 # Documents internes (ne pas publier sur GitHub)
+linkedin/
 Cahier des charges MoMoShield.pdf
 Cahier des charges*.pdf
 *cahier*charges*.pdf

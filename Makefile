@@ -1,4 +1,4 @@
-.PHONY: up up-infra up-apps down ci ci-full lint-fix test-integration download-paysim download-momtsim ingest-paysim-zip ingest-momtsim-zip import-references import-all sources-status apply-staging-schema paysim-replay producer-hybrid bootstrap bootstrap-stop up-airflow
+.PHONY: up up-infra up-apps down ci ci-full lint-fix test-integration download-paysim download-momtsim ingest-paysim-zip ingest-momtsim-zip import-references import-all sources-status apply-staging-schema paysim-replay producer-hybrid bootstrap bootstrap-stop streamlit up-airflow
 
 PYTHON ?= .venv/bin/python
 KAFKA_BOOTSTRAP ?= localhost:9092
@@ -11,6 +11,10 @@ bootstrap:
 bootstrap-stop:
 	chmod +x scripts/bootstrap_stop.sh
 	./scripts/bootstrap_stop.sh
+
+streamlit:
+	chmod +x scripts/run_streamlit.sh
+	./scripts/run_streamlit.sh
 
 up-airflow:
 	docker compose --profile infra --profile full up -d --build \

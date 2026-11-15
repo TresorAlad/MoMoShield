@@ -6,6 +6,8 @@ ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 cd "$ROOT"
 
 RUN_DIR="$ROOT/.run"
+# shellcheck source=lib_local_services.sh
+source "$ROOT/scripts/lib_local_services.sh"
 BRONZE_DIR="${BRONZE_DIR:-$ROOT/data/bronze}"
 KAFKA_BOOTSTRAP="${KAFKA_BOOTSTRAP:-localhost:9092}"
 DATABASE_URL="${DATABASE_URL:-postgresql://momoshield:momoshield_dev@localhost:15432/momoshield}"
@@ -68,17 +70,15 @@ fi
 
 mkdir -p "$BRONZE_DIR" "$RUN_DIR"
 
-stop_pid() {
-  local pid_name="$1"
-  local file="$RUN_DIR/${pid_name}.pid"
-  if [[ -f "$file" ]]; then
-    kill "$(cat "$file")" 2>/dev/null || true
-    rm -f "$file"
-  fi
-}
+exec 9>"$RUN_DIR/bootstrap.lock"
+if ! flock -n 9; then
+  log "Un bootstrap est déjà en cours (verrou $RUN_DIR/bootstrap.lock). Abandon."
+  log "Sinon : make bootstrap-stop puis relance."
+  exit 1
+fi
 
-stop_pid consumer
-stop_pid producer
+log "Arrêt des services locaux existants (PID + orphelins)…"
+momoshield_stop_local_services "$ROOT" "$RUN_DIR"
 
 log "Consumer streaming (arrière-plan)…"
 nohup env PYTHONPATH="$ROOT" BRONZE_DIR="$BRONZE_DIR" KAFKA_BOOTSTRAP="$KAFKA_BOOTSTRAP" \
@@ -87,6 +87,10 @@ nohup env PYTHONPATH="$ROOT" BRONZE_DIR="$BRONZE_DIR" KAFKA_BOOTSTRAP="$KAFKA_BO
 echo $! >"$RUN_DIR/consumer.pid"
 
 sleep 3
+consumer_count="$(momoshield_count_repo_processes "$ROOT" "streaming.python_consumer")"
+if [[ "$consumer_count" != "1" ]]; then
+  log "ATTENTION : $consumer_count consumer(s) détecté(s) — attendu 1. make bootstrap-stop puis relance."
+fi
 
 log "Producteur hybrid ${PRODUCER_RATE}/s pendant ${BOOTSTRAP_TX_SECONDS}s…"
 timeout "$BOOTSTRAP_TX_SECONDS" env PYTHONPATH="$ROOT" KAFKA_BOOTSTRAP="$KAFKA_BOOTSTRAP" \
@@ -127,8 +131,9 @@ fi
 if [[ "$START_STREAMLIT" == "1" ]]; then
   log "Dashboard Streamlit…"
   "$ROOT/.venv/bin/pip" install -q -e ".[streamlit]" 2>/dev/null || true
-  stop_pid streamlit
-  nohup env DATABASE_URL="$DATABASE_URL" \
+  momoshield_stop_streamlit "$ROOT"
+  rm -f "$RUN_DIR/streamlit.pid"
+  nohup env PYTHONPATH="$ROOT" DATABASE_URL="$DATABASE_URL" \
     "$ROOT/.venv/bin/streamlit" run "$ROOT/dashboards/app.py" \
     --server.address 0.0.0.0 --server.port 8501 --server.headless true \
     >>"$RUN_DIR/streamlit.log" 2>&1 &
