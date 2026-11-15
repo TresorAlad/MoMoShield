@@ -1,12 +1,9 @@
 # MoMoShield
 
-**Pipeline data de détection de fraude Mobile Money** (données synthétiques et hybrides, contexte togolais).
-
-> **Projet portfolio Data Engineering** — démonstration bout en bout d’un pipeline moderne (lambda : temps réel + batch), documenté pour recruteurs et pairs techniques. **Aucune donnée client réelle** : jeux synthétiques, échantillons PaySim et scénarios MoMTSim.
+**Pipeline data de détection de fraude Mobile Money** (données synthétiques et hybrides, contexte togolais). Architecture lambda : ingestion temps réel (Kafka), consolidation batch (Airflow, dbt), entrepôt PostgreSQL et tableau de bord Streamlit. **Données synthétiques ou rejouées uniquement** — pas de flux opérateur.
 
 ## Sommaire
 
-- [Portfolio : objectif et compétences](#portfolio--objectif-et-compétences)
 - [Fonctionnalités](#fonctionnalités)
 - [Architecture](#architecture)
 - [Stack technique](#stack-technique)
@@ -20,26 +17,6 @@
 - [Tests et qualité](#tests-et-qualité)
 - [Documentation](#documentation)
 - [Licence des données](#licence-des-données)
-
-## Portfolio : objectif et compétences
-
-Ce dépôt illustre ce qu’un **ingénieur data** peut livrer sur un sujet **fraude Mobile Money** (contexte **Togo**), sans accès à des flux de production :
-
-| Angle | Ce que le projet montre |
-|-------|-------------------------|
-| **Architecture** | Ingestion événementielle, medallion (bronze → staging → marts), batch orchestré |
-| **Qualité** | Contrats JSON, quarantaine, dbt tests, contrôles GE, mart qualité |
-| **Observabilité métier** | SLO documentés, dashboard Streamlit orienté décision |
-| **Industrialisation** | Docker Compose par profils, `make bootstrap`, CI reproductible |
-| **Gouvernance données** | Dictionnaires FR, politique de transformation, ADR |
-
-**Pistes pour un entretien ou une vitrine :**
-
-- Schéma d’architecture : [`docs/architecture-momoshield.jpg`](docs/architecture-momoshield.jpg)
-- Fiche projet courte : [`docs/portfolio-fiche.md`](docs/portfolio-fiche.md)
-- Article / narration (optionnel) : [`docs/linkedin-article.md`](docs/linkedin-article.md)
-
-**Limites assumées (honnêteté portfolio)** : producteur et consumer tournent souvent en **local + venv** ; certains DAG Airflow restent des **squelettes** à durcir ; le jeu PaySim complet est **hors dépôt** (licence Kaggle).
 
 ## Fonctionnalités
 
@@ -182,6 +159,7 @@ MoMoShield/
 |----------|-------------|
 | `make bootstrap` | Stack locale complète (recommandé) — stoppe les orphelins avant redémarrage |
 | `make bootstrap-stop` | Arrêt consumer / producteur / Streamlit (PID + orphelins du repo) |
+| `make streamlit` | Dashboard seul (Postgres requis) |
 | `make up-infra` | Kafka + Postgres uniquement |
 | `make up-airflow` | Airflow web + scheduler (port 8088) |
 | `make producer-hybrid` | Producteur hybride via `.venv` |
@@ -255,11 +233,10 @@ Lint (conteneur CI) : `make lint-fix`.
 | [docs/dictionnaire-colonnes-fr.md](docs/dictionnaire-colonnes-fr.md) | Colonnes métier (FR) |
 | [docs/transformation-policy.md](docs/transformation-policy.md) | Politique de transformation |
 | [docs/slo.md](docs/slo.md) | Objectifs de service |
-| [docs/portfolio-fiche.md](docs/portfolio-fiche.md) | Résumé vitrine / entretien |
 
 ## Licence des données
 
-- **Code du dépôt** : à définir par l’auteur (fichier `LICENSE` à ajouter si publication open source).
+- **Code du dépôt** : voir fichier `LICENSE` le cas échéant.
 - **PaySim** : respecter la licence Kaggle ; ne pas redistribuer le CSV complet sans autorisation. Le dépôt inclut un **échantillon** sous `tests/data/`.
 - Autres jeux de référence : voir métadonnées dans `data/references/` après `make import-references`.
 
