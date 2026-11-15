@@ -1,0 +1,17 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://momoshield.local/schemas/fraud_alert_v1.json",
+  "title": "FraudAlert",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["alert_id", "tx_id", "account_id", "rule_id", "score", "detected_at"],
+  "properties": {
+    "alert_id": { "type": "string" },
+    "tx_id": { "type": "string" },
+    "account_id": { "type": "string" },
+    "rule_id": { "type": "string", "pattern": "^R[1-6]$" },
+    "score": { "type": "number", "minimum": 0, "maximum": 1 },
+    "context": { "type": "object" },
+    "detected_at": { "type": "string", "format": "date-time" }
+  }
+}

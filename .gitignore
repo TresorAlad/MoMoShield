@@ -1,0 +1,23 @@
+.env
+.venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+.coverage
+htmlcov/
+.airflow/
+logs/
+dbt/target/
+dbt/dbt_packages/
+*.egg-info/
+.DS_Store
+/data/
+.run/
+.wheels/
+.impeccable/
+archive.zip
+
+# Documents internes (ne pas publier sur GitHub)
+Cahier des charges MoMoShield.pdf
+Cahier des charges*.pdf
+*cahier*charges*.pdf

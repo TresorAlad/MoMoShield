@@ -1,0 +1,41 @@
+# Sources de données — Cahier des charges MoMoShield §6
+# Liens de référence (pas de redistribution automatique sans vérifier les licences).
+
+sources:
+  - id: paysim_kaggle
+    role: "Base de rejeu et labels isFraud"
+    url: "https://www.kaggle.com/datasets/ealaxi/paysim1"
+    fetch: "make download-paysim"
+    format: "CSV ~6,3M lignes"
+  - id: paysim_paper
+    role: "Citation scientifique"
+    url: "https://www.researchgate.net/publication/306772897_PaySim_A_financial_mobile_money_simulator_for_fraud_detection"
+    fetch: "docs/data-sources.md"
+    format: "Article EMSS 2016"
+  - id: togo_generator
+    role: "Villes, opérateurs, FCFA, heures de pointe, fraudes F3"
+    url: "producer/togo_generator.py"
+    fetch: "intégré (mode synthetic / hybrid)"
+    format: "JSON Kafka"
+  - id: momtsim
+    role: "Rejeu Kafka + scénarios (SIM swap, takeover)"
+    url: "https://data.mendeley.com/datasets/zhj366m53p/2"
+    fetch: "make download-momtsim"
+    format: "CSV MoMTSim — producer/momtsim_mapping.py"
+    note: "Kaggle : denishazamuke/synthetic-mobile-money-transaction-dataset"
+  - id: gsma_fraud
+    role: "Typologie fraude Mobile Money → règles R1–R6"
+    url: "https://www.gsma.com/solutions-and-impact/connectivity-for-good/mobile-for-development/resources/"
+    fetch: "scripts/import_reference_data.sh"
+    format: "Rapports PDF"
+  - id: ai4fcf_catalogue
+    role: "Catalogue jeux ouverts (PaySim, AMLSim, carte…)"
+    url: "https://github.com/"
+    fetch: "docs/data-sources.md"
+    format: "Références conférence AI4FCF / ICDM 2025"
+    note: "Voir docs/data-sources.md pour liens AMLSim et autres"
+  - id: amlsim
+    role: "Comparaison / citation pipeline anti-blanchiment"
+    url: "https://github.com/IBM/AMLSim"
+    fetch: "scripts/import_reference_data.sh"
+    format: "Générateur Java (pas requis pour MoMoShield v1)"

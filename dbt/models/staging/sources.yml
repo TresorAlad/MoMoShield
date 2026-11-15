@@ -1,0 +1,16 @@
+version: 2
+
+sources:
+  - name: momoshield
+    schema: staging
+    tables:
+      - name: stg_transactions
+        loaded_at_field: ingested_at
+        freshness:
+          warn_after: { count: 2, period: day }
+          error_after: { count: 3, period: day }
+      - name: stg_alerts
+        loaded_at_field: ingested_at
+        freshness:
+          warn_after: { count: 2, period: day }
+          error_after: { count: 3, period: day }

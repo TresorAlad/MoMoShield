@@ -1,0 +1,1 @@
+"""Logique batch (consolidation, évaluation)."""

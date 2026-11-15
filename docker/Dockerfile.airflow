@@ -1,0 +1,12 @@
+FROM apache/airflow:2.8.4-python3.11
+
+USER airflow
+WORKDIR /opt/airflow
+
+COPY docker/airflow-pip-wheels /wheels
+RUN pip install --no-cache-dir --no-index --find-links /wheels pydantic jsonschema
+
+COPY momoshield /opt/airflow/momoshield
+COPY airflow/dags /opt/airflow/dags
+
+ENV PYTHONPATH=/opt/airflow

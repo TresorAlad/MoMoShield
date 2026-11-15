@@ -1,0 +1,30 @@
+burst:
+  rule_id: R1
+  max_transfers_per_60s: 5
+  types:
+    - TRANSFER
+
+amount_anomaly:
+  rule_id: R2
+  multiplier_vs_avg: 8.0
+  min_history_tx: 3
+
+sim_swap:
+  rule_id: R3
+  large_withdrawal_fcfa: 500000
+  window_hours: 24
+
+geo_inconsistency:
+  rule_id: R4
+  min_travel_minutes: 90
+
+account_drain:
+  rule_id: R5
+  balance_ratio_threshold: 0.05
+
+atypical_hour:
+  rule_id: R6
+  unusual_hour_amount_fcfa: 750000
+  quiet_hours:
+    start: 1
+    end: 5

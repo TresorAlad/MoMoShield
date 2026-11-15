@@ -1,0 +1,20 @@
+# MoMTSim (Makerere) — scénarios CDC reproduits dans le dépôt (F3), sans rejeu CSV v1
+# Article : doi:10.1109/ACCESS.2024.3439012
+# Données : https://data.mendeley.com/datasets/zhj366m53p/2
+
+platform:
+  name: MoMTSim
+  paper_doi: "10.1109/ACCESS.2024.3439012"
+  data_doi: "10.17632/zhj366m53p.2"
+  pmc: "https://pmc.ncbi.nlm.nih.gov/articles/PMC12036017/"
+
+scenarios:
+  - typology: sim_swap
+    implemented_in: producer.fraud_injector.inject_sim_swap_withdrawal
+  - typology: account_takeover
+    implemented_in: producer.fraud_injector.inject_burst
+  - typology: geo_impossible
+    implemented_in: producer.fraud_injector.inject_geo_impossible
+  - typology: refund_fraud
+    implemented_in: producer.fraud_injector.momtsim_scenario_pack
+    note: "Pack composite pour démo portfolio"

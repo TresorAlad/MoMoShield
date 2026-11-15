@@ -1,0 +1,18 @@
+FROM python:3.11-slim
+
+WORKDIR /workspace
+
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    build-essential libpq-dev \
+    && rm -rf /var/lib/apt/lists/*
+
+COPY pyproject.toml /workspace/
+RUN pip install --no-cache-dir -e ".[dev,airflow,dbt]" 2>/dev/null || pip install --no-cache-dir \
+    ruff pytest pytest-cov jsonschema pydantic pyyaml pandas faker confluent-kafka \
+    apache-airflow==2.8.4 psycopg2-binary httpx dbt-core dbt-postgres
+
+COPY . /workspace
+
+RUN chmod +x scripts/ci.sh
+
+ENTRYPOINT ["./scripts/ci.sh"]

@@ -1,0 +1,6 @@
+step,type,amount,nameOrig,nameDest,isFraud
+1,TRANSFER,1000,acc_001,acc_002,0
+2,TRANSFER,5000,acc_003,acc_004,0
+3,CASH_OUT,200000,acc_fraud_1,,1
+4,PAYMENT,15000,acc_005,merchant_1,0
+5,DEBIT,800,acc_006,,0

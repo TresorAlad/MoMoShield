@@ -1,0 +1,33 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://momoshield.local/schemas/transaction_v1.json",
+  "title": "TransactionEvent",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "tx_id",
+    "account_id",
+    "type",
+    "amount_fcfa",
+    "operator",
+    "city",
+    "sim_id",
+    "event_time",
+    "is_fraud_label"
+  ],
+  "properties": {
+    "tx_id": { "type": "string", "minLength": 8 },
+    "account_id": { "type": "string", "minLength": 1 },
+    "dest_id": { "type": ["string", "null"] },
+    "type": {
+      "type": "string",
+      "enum": ["CASH_IN", "CASH_OUT", "TRANSFER", "PAYMENT", "DEBIT"]
+    },
+    "amount_fcfa": { "type": "number", "exclusiveMinimum": 0 },
+    "operator": { "type": "string", "enum": ["MOOV_MONEY", "MIXX_BY_YAS"] },
+    "city": { "type": "string", "minLength": 1 },
+    "sim_id": { "type": "string", "minLength": 1 },
+    "event_time": { "type": "string", "format": "date-time" },
+    "is_fraud_label": { "type": "boolean" }
+  }
+}

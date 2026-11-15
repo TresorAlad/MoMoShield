@@ -1,0 +1,21 @@
+[theme]
+base = "light"
+primaryColor = "#334155"
+backgroundColor = "#f1f5f9"
+secondaryBackgroundColor = "#ffffff"
+textColor = "#0f172a"
+font = "'Plus Jakarta Sans':https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap"
+paddingTop = "1.5rem"
+paddingBottom = "2.5rem"
+
+[theme.light.sidebar]
+backgroundColor = "#15181c"
+secondaryBackgroundColor = "#22262d"
+textColor = "#f8fafc"
+primaryColor = "#2d333b"
+
+[server]
+headless = true
+
+[browser]
+gatherUsageStats = false

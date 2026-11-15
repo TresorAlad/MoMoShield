@@ -1,0 +1,32 @@
+# Alignement GSMA « Mobile Money Fraud Typologies » (mars 2024) → règles MoMoShield R1–R6
+# PDF : data/references/gsma-fraud-typologies-2024.pdf (make import-references)
+
+gsma_report:
+  title: "Mobile money fraud typologies and mitigation strategies"
+  url: "https://www.gsma.com/solutions-and-impact/connectivity-for-good/mobile-for-development/wp-content/uploads/2024/03/GSMA-Fraud-Typologies-04-03-24.pdf"
+  year: 2024
+
+categories:
+  - gsma_category: impersonation
+    schemes:
+      - social_engineering
+      - identity_fraud
+      - sim_swap_account_takeover
+    momoshield_rules: [R3, R4]
+  - gsma_category: insider_fraud
+    schemes: [embezzlement, data_theft, corruption]
+    momoshield_rules: [R2, R5]
+  - gsma_category: agent_fraud
+    schemes: [agent_commissions, cash_in_cash_out, illegal_fees]
+    momoshield_rules: [R1, R2]
+  - gsma_category: cyber_fraud
+    schemes: [malware, phishing, dos]
+    momoshield_rules: [R6]
+
+rules:
+  R1: { label: burst_transfers, gsma_anchor: "cash-in-cash-out / rafales" }
+  R2: { label: amount_anomaly, gsma_anchor: "embezzlement / montants atypiques" }
+  R3: { label: sim_swap, gsma_anchor: "SIM swap and account takeover" }
+  R4: { label: geo_inconsistency, gsma_anchor: "identity / localisation impossible" }
+  R5: { label: account_drain, gsma_anchor: "vidage de compte" }
+  R6: { label: atypical_hour, gsma_anchor: "activité nocturne / cyber" }

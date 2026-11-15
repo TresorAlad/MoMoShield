@@ -1,0 +1,6 @@
+step,transactionType,amount,initiator,oldBalInitiator,newBalInitiator,recipient,oldBalRecipient,newBalRecipient,isFraud
+1,deposit,50000,UG1001,100000,150000,,0,0,0
+2,transfer,12000,UG1001,150000,138000,UG2002,80000,92000,0
+3,withdrawal,200000,UG1001,138000,0,,0,0,1
+4,payment,8500,UG3003,45000,36500,MERCH9,0,0,0
+5,transfer,450000,UG_FRAUD_A,900000,450000,UG_MULE_1,0,450000,1

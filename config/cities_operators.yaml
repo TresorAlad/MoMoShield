@@ -1,0 +1,20 @@
+operators:
+  - MOOV_MONEY
+  - MIXX_BY_YAS
+
+cities:
+  - Lomé
+  - Kara
+  - Sokodé
+  - Kpalimé
+  - Atakpamé
+  - Tsévié
+  - Dapaong
+  - Mango
+
+transaction_types:
+  - CASH_IN
+  - CASH_OUT
+  - TRANSFER
+  - PAYMENT
+  - DEBIT

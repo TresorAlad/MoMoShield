@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 400">
+  <rect width="800" height="400" fill="#f8fafc"/>
+  <text x="400" y="30" text-anchor="middle" font-family="sans-serif" font-size="18" font-weight="600">MoMoShield</text>
+  <rect x="40" y="60" width="140" height="50" rx="6" fill="#dbeafe" stroke="#2563eb"/>
+  <text x="110" y="90" text-anchor="middle" font-size="12">Producteurs</text>
+  <rect x="220" y="60" width="120" height="50" rx="6" fill="#fef3c7" stroke="#d97706"/>
+  <text x="280" y="90" text-anchor="middle" font-size="12">Kafka</text>
+  <rect x="380" y="60" width="140" height="50" rx="6" fill="#fce7f3" stroke="#db2777"/>
+  <text x="450" y="90" text-anchor="middle" font-size="12">Streaming</text>
+  <rect x="560" y="60" width="120" height="50" rx="6" fill="#dcfce7" stroke="#16a34a"/>
+  <text x="620" y="90" text-anchor="middle" font-size="12">Alertes</text>
+  <rect x="220" y="180" width="120" height="50" rx="6" fill="#e0e7ff" stroke="#4f46e5"/>
+  <text x="280" y="210" text-anchor="middle" font-size="12">MinIO Bronze</text>
+  <rect x="380" y="180" width="140" height="50" rx="6" fill="#ffedd5" stroke="#ea580c"/>
+  <text x="450" y="210" text-anchor="middle" font-size="12">Airflow</text>
+  <rect x="560" y="180" width="120" height="50" rx="6" fill="#f3e8ff" stroke="#9333ea"/>
+  <text x="620" y="210" text-anchor="middle" font-size="12">dbt Gold</text>
+  <rect x="380" y="300" width="140" height="50" rx="6" fill="#ccfbf1" stroke="#0d9488"/>
+  <text x="450" y="330" text-anchor="middle" font-size="12">Streamlit</text>
+  <line x1="180" y1="85" x2="220" y2="85" stroke="#64748b" marker-end="url(#arrow)"/>
+  <line x1="340" y1="85" x2="380" y2="85" stroke="#64748b"/>
+  <line x1="520" y1="85" x2="560" y2="85" stroke="#64748b"/>
+  <line x1="450" y1="110" x2="280" y2="180" stroke="#64748b"/>
+  <line x1="280" y1="230" x2="380" y2="205" stroke="#64748b"/>
+  <line x1="520" y1="205" x2="560" y2="205" stroke="#64748b"/>
+  <line x1="620" y1="230" x2="490" y2="300" stroke="#64748b"/>
+</svg>

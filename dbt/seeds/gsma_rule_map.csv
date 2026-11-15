@@ -1,0 +1,7 @@
+rule_id,famille_fraude_gsma
+R1,fraude_agent
+R2,fraude_interne
+R3,usurpation
+R4,usurpation
+R5,fraude_interne
+R6,cyber_fraude

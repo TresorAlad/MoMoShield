@@ -1,0 +1,29 @@
+# Catalogue de jeux ouverts (CDC §6 — AI4FCF / littérature anti-fraude financière)
+# Usage v1 : traçabilité, comparaison, portfolio — pas d’ingestion Kafka sauf PaySim/MoMTSim.
+
+datasets:
+  - id: paysim
+    name: PaySim
+    url: "https://www.kaggle.com/datasets/ealaxi/paysim1"
+    in_project: "data/paysim/*.csv"
+    pipeline: kafka_replay
+  - id: momtsim_mendeley
+    name: MoMTSim (Makerere) v2
+    url: "https://data.mendeley.com/datasets/zhj366m53p/2"
+    doi: "10.17632/zhj366m53p.2"
+    in_project: "data/references/momtsim-metadata.yaml"
+    pipeline: scenarios_f3
+    note: "Téléchargement manuel (compte Mendeley) — optional ingestion future"
+  - id: momtsim_kaggle
+    name: MoMTSim (miroir Kaggle)
+    url: "https://www.kaggle.com/datasets/denishazamuke/synthetic-mobile-money-transaction-dataset"
+    pipeline: optional_download
+  - id: amlsim
+    name: IBM AMLSim
+    url: "https://github.com/IBM/AMLSim"
+    in_project: "data/references/AMLSim-README.md"
+    pipeline: citation_only
+  - id: creditcard_fraud
+    name: ULB carte bancaire
+    url: "https://www.kaggle.com/datasets/mlg-ulb/creditcardfraud"
+    pipeline: hors_perimetre_v1

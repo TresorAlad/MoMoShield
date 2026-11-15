@@ -1,0 +1,12 @@
+momoshield:
+  target: dev
+  outputs:
+    dev:
+      type: postgres
+      host: "{{ env_var('POSTGRES_HOST', 'localhost') }}"
+      user: "{{ env_var('POSTGRES_USER', 'momoshield') }}"
+      password: "{{ env_var('POSTGRES_PASSWORD', 'momoshield_dev') }}"
+      port: "{{ env_var('POSTGRES_PORT', '15432') | int }}"
+      dbname: "{{ env_var('POSTGRES_DB', 'momoshield') }}"
+      schema: staging
+      threads: 2

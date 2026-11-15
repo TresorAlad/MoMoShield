@@ -1,0 +1,23 @@
+version: 2
+
+models:
+  - name: stg_momoshield__transactions
+    columns:
+      - name: tx_id
+        tests: [unique, not_null]
+      - name: type
+        tests:
+          - accepted_values:
+              values: ['CASH_IN', 'CASH_OUT', 'TRANSFER', 'PAYMENT', 'DEBIT']
+      - name: operator
+        tests:
+          - accepted_values:
+              values: ['MOOV_MONEY', 'MIXX_BY_YAS']
+      - name: amount_fcfa
+        tests: [not_null]
+  - name: stg_momoshield__alerts
+    columns:
+      - name: alert_id
+        tests: [unique, not_null]
+      - name: tx_id
+        tests: [not_null]

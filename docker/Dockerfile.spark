@@ -1,0 +1,8 @@
+FROM python:3.11-slim
+
+WORKDIR /opt/momoshield
+COPY streaming /opt/momoshield/streaming
+COPY momoshield /opt/momoshield/momoshield
+COPY config /opt/momoshield/config
+
+CMD ["python", "/opt/momoshield/streaming/spark_job.py"]
